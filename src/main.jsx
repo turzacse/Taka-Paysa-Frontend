@@ -13,6 +13,8 @@ import AddTransactionPage from './Page/AddTransaction/AddTransactionPage.jsx';
 import ReportsAnalyticsPage from './Page/Report/ReportsAnalyticsPage.jsx';
 import CategoriesManagementPage from './Page/CategoriesManagement/CategoriesManagementPage.jsx';
 import Admin from './Layout/Dashboard.jsx';
+import { AuthProvider } from './Context/AuthContext.jsx';
+import Login from './Page/Authentications/Login.jsx';
 
 const router = createBrowserRouter([
   {
@@ -39,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: '/category',
         element: <CategoriesManagementPage/>
+      },
+      {
+        path: '/login',
+        element: <Login/>
       }
     ]
   },
@@ -67,6 +73,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>,
 )
