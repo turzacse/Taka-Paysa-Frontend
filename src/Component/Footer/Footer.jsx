@@ -33,14 +33,14 @@ const Footer = () => {
             <a href="#" className="hover:text-[#FF9800] transition"><Twitter size={24} /></a>
             <a href="#" className="hover:text-[#FF9800] transition"><Instagram size={24} /></a>
           </div>
-          <p className="mt-3 text-gray-300">Email: support@hisabkhata.com</p>
+          <p className="mt-3 text-gray-300">Email: support@takapaysa.com</p>
         </div>
 
       </div>
 
       {/* Copyright Section */}
       <div className="text-center mt-8 text-gray-400">
-        <p>© {new Date().getFullYear()} HisabKhata. All Rights Reserved.</p>
+        <p>© {new Date().getFullYear()} TakaPaysa. All Rights Reserved.</p>
       </div>
     </footer>
   );

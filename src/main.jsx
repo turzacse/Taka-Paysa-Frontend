@@ -15,6 +15,7 @@ import CategoriesManagementPage from './Page/CategoriesManagement/CategoriesMana
 import Admin from './Layout/Dashboard.jsx';
 import { AuthProvider } from './Context/AuthContext.jsx';
 import Login from './Page/Authentications/Login.jsx';
+import Signup from './Page/Authentications/Signup.jsx';
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: '/login',
         element: <Login/>
+      },
+      {
+        path: '/signup',
+        element: <Signup/>
       }
     ]
   },
