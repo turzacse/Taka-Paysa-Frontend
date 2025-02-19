@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 // Create AuthContext
 export const AuthContext = createContext();
@@ -8,7 +9,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
-//   const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   // Login function
   const login = async (formData) => {
@@ -22,7 +23,7 @@ export const AuthProvider = ({ children }) => {
       const { token, } = response.data;
 
       // Display success or error message
-      if (success) {
+      if (token) {
         Swal.fire({
           text: "You have successfully logged in",
           icon: "success",
@@ -46,9 +47,10 @@ export const AuthProvider = ({ children }) => {
       }
 
       setLoading(false);
-      return success;
+      return true;
     } catch (error) {
       setLoading(false);
+      console.log(error);
       Swal.fire({
         text: error.response?.data?.message || "An error occurred during login",
         icon: "error",

@@ -1,5 +1,7 @@
+import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -21,10 +23,34 @@ const Signup = () => {
       setError("Passwords do not match");
       return;
     }
+  
     setError("");
-    // API call for signup can be added here
-    navigate("/"); // Redirect after signup
+  
+    try {
+      const response = await axios.post("http://localhost:5000/api/users/register", {
+        name: formData?.fullName,
+        email: formData.email,
+        password: formData.password,
+      });
+  
+      if (response.status === 201) {
+        Swal.fire({
+          text: "Signup successful! You can now log in.",
+          icon: "success",
+          background: "#D1D5DB",
+        });
+        navigate("/login"); // Redirect after signup
+      }
+    } catch (error) {
+        console.log(error)
+      Swal.fire({
+        text: error.response?.data?.message || "Signup failed",
+        icon: "error",
+        background: "#FDE2E4",
+      });
+    }
   };
+  
 
   return (
     <div className="relative flex justify-center items-center h-screen  bg-gradient-to-br from-[#00796B] via-[#b9883d] to-[#37474F] overflow-hidden">
